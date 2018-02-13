@@ -163,14 +163,14 @@ class Analytics
             	}		
             }
         }
-        PrintWriter pw = new PrintWriter(new File("Reduced Names List 2.csv"));
+        PrintWriter pw = new PrintWriter(new File("Reduced Names List.csv"));
         StringBuilder sb = new StringBuilder();
         for(int j=0; j< total.size(); j++)
         {
     		sb.append(total.get(j));
         	sb.append('\n');
         }
-        System.out.println("A total of "+(genl - total.size())+" dupilcates have been removed and a new Reduced Names List 2.csv file has been created. Thank You.");
+        System.out.println("A total of "+(genl - total.size())+" dupilcates have been removed and a new Reduced Names List.csv file has been created. Thank You.");
         pw.write(sb.toString());
         pw.close();
 	}		  
