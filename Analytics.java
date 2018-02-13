@@ -44,13 +44,13 @@ class Analytics
 			System.out.println("Some data is missing. Please update the CSV file.");
 		}
 		for(int i=0; i<dobl; i++)  
-        	total.add(dob.get(i) +" "+ gen.get(i) + " "+ firstname.get(i) + " "+ lastname.get(i));
+        	total.add(dob.get(i) +","+ gen.get(i) + ","+ firstname.get(i) + ","+ lastname.get(i));
 
         Collections.sort(total, Collections.reverseOrder());
         for(int i=1; i < (total.size() - 1) ; i++)
         {
-        	StringTokenizer st1 = new StringTokenizer(total.get(i),(" "));
-		    StringTokenizer st2 = new StringTokenizer(total.get(i+1),(" "));
+        	StringTokenizer st1 = new StringTokenizer(total.get(i),(", "));
+		    StringTokenizer st2 = new StringTokenizer(total.get(i+1),(", "));
 		    int st1count = st1.countTokens(), st2count = st2.countTokens();
             if (st1.nextToken().equals(st2.nextToken()))
             {
@@ -163,33 +163,14 @@ class Analytics
             	}		
             }
         }
-        gen.clear();
-        dob.clear();
-        firstname.clear();
-        lastname.clear();
-        PrintWriter pw = new PrintWriter(new File("Reduced Names List.csv"));
+        PrintWriter pw = new PrintWriter(new File("Reduced Names List 2.csv"));
         StringBuilder sb = new StringBuilder();
         for(int j=0; j< total.size(); j++)
         {
-    		StringTokenizer tot = new StringTokenizer(total.get(j),(" "));
-    		dob.add(tot.nextToken());
-    		gen.add(tot.nextToken());
-    		firstname.add(tot.nextToken());
-    		String last = "";
-    		while(tot.hasMoreTokens())
-				last = last + tot.nextToken() + " ";
-			lastname.add(last);
-			sb.append(lastname.get(j));
-        	sb.append(',');
-        	sb.append(dob.get(j));
-        	sb.append(',');
-        	sb.append(gen.get(j));
-        	sb.append(',');
-        	sb.append(firstname.get(j));
-        	sb.append(',');
+    		sb.append(total.get(j));
         	sb.append('\n');
         }
-        System.out.println("A total of "+(genl - total.size())+" dupilcates have been removed and a new Reduced Names List.csv file has been created. Thank You.");
+        System.out.println("A total of "+(genl - total.size())+" dupilcates have been removed and a new Reduced Names List 2.csv file has been created. Thank You.");
         pw.write(sb.toString());
         pw.close();
 	}		  
